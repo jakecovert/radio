@@ -1,0 +1,81 @@
+#!/bin/bash
+#
+# Listening to Internet Radio using Mplayer
+#
+# Author       : Yu-Jie Lin
+# Creation Date: 2007-11-19T17:48:09+0800
+
+WORKNETWORK=`ifconfig | egrep '(inet 19\.|inet 136\.)' | wc -l`
+
+if [ "$WORKNETWORK" -gt 0 ];then
+        echo "We're on a work network"
+	http_proxy=http://19.12.1.40:83
+	export http_proxy
+else
+	http_proxy=
+	export http_proxy
+        echo "Not on a work network"
+fi
+
+echo Internet Radio Stations:
+
+stations=(\
+'WDET' \
+'mplayer -msgcolor -playlist http://141.217.119.14:8000/WDETMainMP3.m3u </dev/null >/dev/null 2>&1 &' \
+'WNYC - FM: New York Public Radio' \
+'mplayer -msgcolor -playlist http://www.wnyc.org/stream/fm.pls </dev/null >/dev/null 2>&1 &' \
+'WKSU 3 Classical - Kent, Ohio' \
+'mplayer -msgcolor -playlist http://www.wksu.org/listen/wksu3.pls </dev/null >/dev/null 2>&1 &' \
+'Folk Alley' \
+'mplayer -msgcolor -playlist http://wksu1.streamguys.com/listen.pls </dev/null >/dev/null 2>&1 &' \
+'WCBN Ann Arbor - Freeform' \
+'mplayer -msgcolor -playlist http://floyd.wcbn.org/wcbn-hi.m3u </dev/null >/dev/null 2>&1 &' \
+'Radio K - College - Uni of Minnesota, Minneapolis' \
+'mplayer -msgcolor -playlist http://radiokstreams.cce.umn.edu:8128/listen.pls </dev/null >/dev/null 2>&1 &' \
+'KUAT Classical - Tucson, AZ' \
+'mplayer -msgcolor -playlist http://streaming.azpm.org/kuat192.mp3.m3u </dev/null >/dev/null 2>&1 &' \
+'KUHA - NPR Classical - Houston, TX' \
+'mplayer -msgcolor -playlist http://129.7.48.199/KUHF-HD2-128K.m3u </dev/null >/dev/null 2>&1 &' \
+'Classical Minnesota Public Radio' \
+'mplayer -msgcolor -playlist http://minnesota.publicradio.org/tools/play/streams/classical.pls </dev/null >/dev/null 2>&1 &' \
+'KALX Radio 90.7FM - College radio from Berkeley, CA' \
+'mplayer -msgcolor -playlist http://icecast.media.berkeley.edu:8000/kalx-128.mp3.m3u </dev/null >/dev/null 2>&1 &' \
+'andHow.FM - Got Indie -Papakowhai, New Zealand' \
+'mplayer -msgcolor -playlist http://www.andhow.fm/playlists/andhow.m3u </dev/null >/dev/null 2>&1 &' \
+'WRUV FM Burlington, VT 90.1 - College radio' \
+'mplayer -msgcolor -playlist http://wruv.org/wruv256.m3u </dev/null >/dev/null 2>&1 &' \
+'Indie Pop Rocks [SomaFM]' \
+'mplayer -msgcolor -playlist http://somafm.com/indiepop130.pls </dev/null >/dev/null 2>&1 &' \
+'Digitalis [SomaFM]' \
+'mplayer -msgcolor -playlist http://somafm.com/digitalis130.pls </dev/null >/dev/null 2>&1 &' \
+'BAGeL Radio [SomaFM]' \
+'mplayer -msgcolor -playlist http://somafm.com/bagel.pls </dev/null >/dev/null 2>&1 &' \
+'KEXP.ORG 90.3FM - Seattle, WA - Eclectic' \
+'mplayer -msgcolor -playlist http://live-mp3-128.kexp.org:8000/listen.pls </dev/null >/dev/null 2>&1 &' \
+'BBC' \
+'mplayer -msgcolor -playlist http://www.vpr.net/vpr_files/stream_playlists/vpr_bbc_mp3.pls </dev/null >/dev/null 2>&1 &' \
+)
+
+let "count = ${#stations[@]} / 2"
+
+# List stations
+index=0
+
+while [ "$index" -lt "$count" ]
+do    # List all the elements in the array.
+	let "i = $index*2"
+	echo "$index: ${stations[$i]}"
+    let "index = $index + 1"
+done
+
+echo;
+echo -n "Which station? "
+read radio
+
+if [ "$radio" == "" ]; then
+	exit
+fi
+
+let "i = $radio*2 + 1"
+
+${stations[$i]}

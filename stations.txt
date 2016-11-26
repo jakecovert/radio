@@ -1,0 +1,98 @@
+Name   : WNYC - FM: New York Public Radio - Icecast MP3 - vm8023
+Genre  : Various
+Website: http://www.wnyc.org/
+Stream : http://www.wnyc.org/stream/fm.pls
+
+Name   : WKSU 3 Classical
+Where  : Kent, Ohio
+Genre  : Classical
+Website: http://www.wksu.org/
+Stream : http://www.wksu.org/listen/wksu3.pls
+
+Name   : Folk Alley  (( All Folk.  All The Time.  ))
+Genre  : Folk
+Website: http://www.folkalley.com
+Stream : http://wksu1.streamguys.com/listen.pls
+
+Name   : WCBN hi-fi
+Where  : Ann Arbor
+Genre  : freeform
+Website: http://wcbn.org/
+Stream : http://floyd.wcbn.org/wcbn-hi.m3u
+
+
+Name   : Radio K 128
+Where  : College - Uni of Minnesota, Minneapolis
+Genre  : College Radio
+Website: 
+Stream : http://radiokstreams.cce.umn.edu:8128/listen.pls
+
+Name   : KUAT Classical
+Where  : Tucson, AZ
+Genre  : Classical
+Website: http://radio.azpm.org/classical/
+Stream : http://streaming.azpm.org/kuat192.mp3.m3u
+
+Name   : KUHA 128
+Where  : Houston, Texas
+Genre  : Public - NPR/Classical
+Stream : http://129.7.48.199/KUHF-HD2-128K.m3u
+
+Name   : Classical Minnesota Public Radio
+Where  : St.Paul, Minneapolis
+Genre  : Classical
+Website: http://minnesota.publicradio.org/radio/services/cm
+Stream : http://minnesota.publicradio.org/tools/play/streams/classical.pls
+
+Name   : KALX Radio 90.7FM (128k stereo)
+Where  : Berkeley, CA
+Genre  : College Radio
+Website: http://kalx.berkeley.edu
+Stream : http://icecast.media.berkeley.edu:8000/kalx-128.mp3.m3u
+
+Name   : andHow.FM - Got Indie?
+Where  : Papakowhai, New Zealand
+Genre  : Indie
+Website: http://www.andhow.fm
+Stream : http://www.andhow.fm/playlists/andhow.m3u
+
+Name   : WRUV FM Burlington, VT 90.1 [256kbps]
+Where  : University of Vermont 
+Genre  : college radio
+Website: http://www.wruv.org/wruv_fm_256
+Stream : http://wruv.org/wruv256.m3u
+
+Name   : Indie Pop Rocks! [SomaFM]
+Genre  : College Indie
+Website: http://somafm.com
+Stream : http://somafm.com/indiepop130.pls
+
+Name   : Digitalis: Digitally affected analog rock to calm the agitated heart. [SomaFM]
+Genre  : Indie Post Rock
+Website: http://SomaFM.com
+Stream : http://somafm.com/digitalis130.pls
+
+Name   : BAGeL Radio: What alternative rock radio should sound like. [SomaFM]
+Genre  : Alternative Rock
+Website: http://somafm.com/bagel
+Stream : http://somafm.com/bagel.pls
+
+Name   : KEXP.ORG 90.3FM - where the music matters
+Where  : Seattle, WA
+Genre  : Eclectic
+Website: http://live-mp3-128.kexp.org
+Stream : http://live-mp3-128.kexp.org:8000/listen.pls
+
+Name   : BBC on Vermont Public Radio
+Genre  : News
+Website: http://www.vpr.net
+Stream : http://www.vpr.net/vpr_files/stream_playlists/vpr_bbc_mp3.pls
+
+Name   : WDET
+Genre  : News
+Website: http://www.wdetfm.org
+Stream : http://141.217.119.14:8000/WDETMainMP3.m3u
+
+
+
+
