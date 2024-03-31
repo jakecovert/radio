@@ -21,21 +21,30 @@ echo Internet Radio Stations:
 
 stations=(\
 'WDET' \
-'mplayer -msgcolor -playlist http://141.217.119.14:8000/WDETMainMP3.m3u </dev/null >/dev/null 2>&1 &' \
-'WNYC - FM: New York Public Radio' \
-'mplayer -msgcolor -playlist http://www.wnyc.org/stream/fm.pls </dev/null >/dev/null 2>&1 &' \
+'vlc -I dummy http://wdet.streamguys1.com/live-aac' \
+#'vlc -I dummy  http://wdet.streamguys1.com/live-mp3' \
+
+'WNYC - FM 93.9 : New York Public Radio' \
+'vlc -I dummy https://fm939.wnyc.org/wnycfm' \
+
 'WKSU 3 Classical - Kent, Ohio' \
-'mplayer -msgcolor -playlist http://www.wksu.org/listen/wksu3.pls </dev/null >/dev/null 2>&1 &' \
+'vlc -I dummy https://www.wksu.org/listen/wksu3.pls' \
+
 'Folk Alley' \
 'mplayer -msgcolor -playlist http://wksu1.streamguys.com/listen.pls </dev/null >/dev/null 2>&1 &' \
+
 'WCBN Ann Arbor - Freeform' \
-'mplayer -msgcolor -playlist http://floyd.wcbn.org/wcbn-hi.m3u </dev/null >/dev/null 2>&1 &' \
+'vlc -I dummy http://floyd.wcbn.org/wcbn-hd.m3u' \
+
 'Radio K - College - Uni of Minnesota, Minneapolis' \
-'mplayer -msgcolor -playlist http://radiokstreams.cce.umn.edu:8128/listen.pls </dev/null >/dev/null 2>&1 &' \
+'vlc -I dummy https://radiok.broadcasttool.stream/play_256' \
+
 'KUAT Classical - Tucson, AZ' \
 'mplayer -msgcolor -playlist http://streaming.azpm.org/kuat192.mp3.m3u </dev/null >/dev/null 2>&1 &' \
-'KUHA - NPR Classical - Houston, TX' \
-'mplayer -msgcolor -playlist http://129.7.48.199/KUHF-HD2-128K.m3u </dev/null >/dev/null 2>&1 &' \
+
+#'KUHA - NPR Classical - Houston, TX' \
+#'mplayer -msgcolor -playlist http://129.7.48.199/KUHF-HD2-128K.m3u </dev/null >/dev/null 2>&1 &' \
+
 'Classical Minnesota Public Radio' \
 'mplayer -msgcolor -playlist http://minnesota.publicradio.org/tools/play/streams/classical.pls </dev/null >/dev/null 2>&1 &' \
 'KALX Radio 90.7FM - College radio from Berkeley, CA' \
