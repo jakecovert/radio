@@ -91,7 +91,9 @@ Stream : http://www.vpr.net/vpr_files/stream_playlists/vpr_bbc_mp3.pls
 Name   : WDET
 Genre  : News
 Website: http://www.wdetfm.org
-Stream : http://141.217.119.14:8000/WDETMainMP3.m3u
+Stream : http://wdet.streamguys1.com/live-aac
+Stream : http://wdet.streamguys1.com/live-mp3
+# Neither works worth a shit...
 
 
 
