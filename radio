@@ -40,7 +40,7 @@ stations=(\
 'vlc -I dummy https://radiok.broadcasttool.stream/play_256' \
 
 'KUAT Classical - Tucson, AZ' \
-'vlc -I dummy https://hls.azpm.org/t-fmp4/FLAC/KUAT_FLAC.m3u8' \
+'vlc -I dummy https://streaming.azpm.org/kuat128.mp3' \
 
 #'KUHA - NPR Classical - Houston, TX' \
 #'mplayer -msgcolor -playlist http://129.7.48.199/KUHF-HD2-128K.m3u </dev/null >/dev/null 2>&1 &' \
