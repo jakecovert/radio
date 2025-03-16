@@ -21,20 +21,24 @@ echo Internet Radio Stations:
 
 stations=(\
 'WDET' \
-'vlc -I dummy http://wdet.streamguys1.com/live-aac' \
+'vlc -I dummy https://wdet.cdnstream1.com/4550_256.aac' \
+#'vlc -I dummy http://wdet.streamguys1.com/live-aac' \
 #'vlc -I dummy  http://wdet.streamguys1.com/live-mp3' \
 
 'WNYC - FM 93.9 : New York Public Radio' \
 'vlc -I dummy https://fm939.wnyc.org/wnycfm' \
 
-'WKSU 3 Classical - Kent, Ohio' \
-'vlc -I dummy https://www.wksu.org/listen/wksu3.pls' \
+'WKSU Kent, Ohio' \
+'vlc -I dummy http://wksu1.streamguys.com:8030/wksu1-256.aac' \
 
-'Folk Alley' \
-'mplayer -msgcolor -playlist http://wksu1.streamguys.com/listen.pls </dev/null >/dev/null 2>&1 &' \
+'WKSU 3 Classical - Kent, OH' \
+'vlc -I dummy http://wksu1.streamguys.com:8030/wksu3-128' \
 
-'WCBN Ann Arbor - Freeform' \
-'vlc -I dummy http://floyd.wcbn.org/wcbn-hd.m3u' \
+'WKSU - Akron, OH - Folk Alley' \
+'vlc -I dummy https://freshgrass.streamguys1.com/folkalley-128mp3' \
+
+'U of M College Radio (WCBN Ann Arbor)' \
+'vlc -I dummy http://floyd.wcbn.org:8000/wcbn-hd.mp3' \
 
 'Radio K - College - Uni of Minnesota, Minneapolis' \
 'vlc -I dummy https://radiok.broadcasttool.stream/play_256' \
