@@ -1,94 +1,87 @@
 #!/bin/bash
 #
-# Listening to Internet Radio using Mplayer
-#
-# Author       : Yu-Jie Lin
-# Creation Date: 2007-11-19T17:48:09+0800
+# Listen to Internet Radio using MPlayer or VLC
+# Original Author: Yu-Jie Lin
+# Modified by: Jake Covert, 2025
 
-WORKNETWORK=`ifconfig | egrep '(inet 19\.|inet 136\.)' | wc -l`
+# Define radio stations (name-command pairs)
+stations=(
+    'WDET'
+    'vlc -I dummy https://wdet.cdnstream1.com/4550_256.aac'
 
-if [ "$WORKNETWORK" -gt 0 ];then
-        echo "We're on a work network"
-	http_proxy=http://19.12.1.40:83
-	export http_proxy
-else
-	http_proxy=
-	export http_proxy
-        echo "Not on a work network"
-fi
+    'WNYC - FM 93.9 : New York Public Radio'
+    'vlc -I dummy https://fm939.wnyc.org/wnycfm'
 
-echo Internet Radio Stations:
+    'WKSU Kent, Ohio'
+    'vlc -I dummy http://wksu1.streamguys.com:8030/wksu1-256.aac'
 
-stations=(\
-'WDET' \
-'vlc -I dummy https://wdet.cdnstream1.com/4550_256.aac' \
-#'vlc -I dummy http://wdet.streamguys1.com/live-aac' \
-#'vlc -I dummy  http://wdet.streamguys1.com/live-mp3' \
+    'WKSU 3 Classical - Kent, OH'
+    'vlc -I dummy http://wksu1.streamguys.com:8030/wksu3-128'
 
-'WNYC - FM 93.9 : New York Public Radio' \
-'vlc -I dummy https://fm939.wnyc.org/wnycfm' \
+    'WKSU - Akron, OH - Folk Alley'
+    'vlc -I dummy https://freshgrass.streamguys1.com/folkalley-128mp3'
 
-'WKSU Kent, Ohio' \
-'vlc -I dummy http://wksu1.streamguys.com:8030/wksu1-256.aac' \
+    'U of M College Radio (WCBN Ann Arbor)'
+    'vlc -I dummy http://floyd.wcbn.org:8000/wcbn-hd.mp3'
 
-'WKSU 3 Classical - Kent, OH' \
-'vlc -I dummy http://wksu1.streamguys.com:8030/wksu3-128' \
+    'Radio K - University of Minnesota, Minneapolis'
+    'vlc -I dummy https://radiok.broadcasttool.stream/play_256'
 
-'WKSU - Akron, OH - Folk Alley' \
-'vlc -I dummy https://freshgrass.streamguys1.com/folkalley-128mp3' \
+    'KUAT Classical - Tucson, AZ'
+    'vlc -I dummy https://streaming.azpm.org/kuat128.mp3'
 
-'U of M College Radio (WCBN Ann Arbor)' \
-'vlc -I dummy http://floyd.wcbn.org:8000/wcbn-hd.mp3' \
+    'Classical Minnesota Public Radio'
+    'mplayer -msgcolor -playlist http://minnesota.publicradio.org/tools/play/streams/classical.pls'
 
-'Radio K - College - Uni of Minnesota, Minneapolis' \
-'vlc -I dummy https://radiok.broadcasttool.stream/play_256' \
+    'KALX Radio 90.7FM - Berkeley, CA'
+    'mplayer -msgcolor -playlist http://icecast.media.berkeley.edu:8000/kalx-128.mp3.m3u'
 
-'KUAT Classical - Tucson, AZ' \
-'vlc -I dummy https://streaming.azpm.org/kuat128.mp3' \
+    'andHow.FM - Indie - New Zealand'
+    'mplayer -msgcolor -playlist http://www.andhow.fm/playlists/andhow.m3u'
 
-#'KUHA - NPR Classical - Houston, TX' \
-#'mplayer -msgcolor -playlist http://129.7.48.199/KUHF-HD2-128K.m3u </dev/null >/dev/null 2>&1 &' \
+    'WRUV FM Burlington, VT 90.1'
+    'mplayer -msgcolor -playlist http://wruv.org/wruv256.m3u'
 
-'Classical Minnesota Public Radio' \
-'mplayer -msgcolor -playlist http://minnesota.publicradio.org/tools/play/streams/classical.pls </dev/null >/dev/null 2>&1 &' \
-'KALX Radio 90.7FM - College radio from Berkeley, CA' \
-'mplayer -msgcolor -playlist http://icecast.media.berkeley.edu:8000/kalx-128.mp3.m3u </dev/null >/dev/null 2>&1 &' \
-'andHow.FM - Got Indie -Papakowhai, New Zealand' \
-'mplayer -msgcolor -playlist http://www.andhow.fm/playlists/andhow.m3u </dev/null >/dev/null 2>&1 &' \
-'WRUV FM Burlington, VT 90.1 - College radio' \
-'mplayer -msgcolor -playlist http://wruv.org/wruv256.m3u </dev/null >/dev/null 2>&1 &' \
-'Indie Pop Rocks [SomaFM]' \
-'mplayer -msgcolor -playlist http://somafm.com/indiepop130.pls </dev/null >/dev/null 2>&1 &' \
-'Digitalis [SomaFM]' \
-'mplayer -msgcolor -playlist http://somafm.com/digitalis130.pls </dev/null >/dev/null 2>&1 &' \
-'BAGeL Radio [SomaFM]' \
-'mplayer -msgcolor -playlist http://somafm.com/bagel.pls </dev/null >/dev/null 2>&1 &' \
-'KEXP.ORG 90.3FM - Seattle, WA - Eclectic' \
-'mplayer -msgcolor -playlist http://live-mp3-128.kexp.org:8000/listen.pls </dev/null >/dev/null 2>&1 &' \
-'BBC' \
-'mplayer -msgcolor -playlist http://www.vpr.net/vpr_files/stream_playlists/vpr_bbc_mp3.pls </dev/null >/dev/null 2>&1 &' \
+    'Indie Pop Rocks [SomaFM]'
+    'mplayer -msgcolor -playlist http://somafm.com/indiepop130.pls'
+
+    'Digitalis [SomaFM]'
+    'mplayer -msgcolor -playlist http://somafm.com/digitalis130.pls'
+
+    'BAGeL Radio [SomaFM]'
+    'mplayer -msgcolor -playlist http://somafm.com/bagel.pls'
+
+    'KEXP.ORG 90.3FM - Seattle, WA'
+    'mplayer -msgcolor -playlist http://live-mp3-128.kexp.org:8000/listen.pls'
+
+    'BBC'
+    'mplayer -msgcolor -playlist http://www.vpr.net/vpr_files/stream_playlists/vpr_bbc_mp3.pls'
 )
 
-let "count = ${#stations[@]} / 2"
+# Total stations
+station_count=$(( ${#stations[@]} / 2 ))
 
-# List stations
-index=0
+# If no argument, show station list
+if [ -z "$1" ]; then
+    echo "Internet Radio Stations:"
+    for ((i = 0; i < station_count; i++)); do
+        name_index=$((i * 2))
+        echo "$i: ${stations[$name_index]}"
+    done
 
-while [ "$index" -lt "$count" ]
-do    # List all the elements in the array.
-	let "i = $index*2"
-	echo "$index: ${stations[$i]}"
-    let "index = $index + 1"
-done
-
-echo;
-echo -n "Which station? "
-read radio
-
-if [ "$radio" == "" ]; then
-	exit
+    echo
+    read -p "Which station? " radio
+else
+    radio=$1
 fi
 
-let "i = $radio*2 + 1"
+# Validate input
+if ! [[ "$radio" =~ ^[0-9]+$ ]] || [ "$radio" -ge "$station_count" ]; then
+    echo "Invalid selection. Exiting."
+    exit 1
+fi
 
-${stations[$i]}
+# Run selected station command
+cmd_index=$((radio * 2 + 1))
+echo "Tuning in to: ${stations[$((radio * 2))]}"
+eval "${stations[$cmd_index]}"
