@@ -4,7 +4,27 @@
 # Original Author: Yu-Jie Lin
 # Modified by: Jake Covert, 2025
 
-# Define radio stations (name-command pairs)
+# ─────────────────────────────────────────────────────────────
+# USAGE HELP
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+    cat <<EOF
+Usage: $0 [station_number]
+
+Listen to internet radio stations from the command line.
+
+Without arguments, you'll be prompted to select a station interactively.
+
+Arguments:
+  station_number   Index number of the station to play directly (e.g., "$0 2")
+  -h, --help       Show this help message
+
+Example:
+  $0 0       # Play WDET immediately
+EOF
+    exit 0
+fi
+
+# Define array of radio stations name-command pairs
 stations=(
     'WDET'
     'vlc -I dummy https://wdet.cdnstream1.com/4550_256.aac'
@@ -58,30 +78,50 @@ stations=(
     'mplayer -msgcolor -playlist http://www.vpr.net/vpr_files/stream_playlists/vpr_bbc_mp3.pls'
 )
 
-# Total stations
+
+# Calculate number of station entries entry is a pair: name + command)
 station_count=$(( ${#stations[@]} / 2 ))
 
-# If no argument, show station list
+# ─────────────────────────────────────────────────────────────
+# USER INPUT HANDLING
+
+# If the user didn't pass a station number as an argument...
 if [ -z "$1" ]; then
     echo "Internet Radio Stations:"
+
+    # Print each station name with its numeric index
     for ((i = 0; i < station_count; i++)); do
         name_index=$((i * 2))
         echo "$i: ${stations[$name_index]}"
     done
 
     echo
+    # Prompt the user to pick a station
     read -p "Which station? " radio
 else
+    # If an argument was passed, use it as the station number
     radio=$1
 fi
 
-# Validate input
+# ─────────────────────────────────────────────────────────────
+# VALIDATION
+
+# Check if the input is a number and within valid range
 if ! [[ "$radio" =~ ^[0-9]+$ ]] || [ "$radio" -ge "$station_count" ]; then
     echo "Invalid selection. Exiting."
     exit 1
 fi
 
-# Run selected station command
+# ─────────────────────────────────────────────────────────────
+# STATION PLAYBACK
+
+# Compute the index in the array where the command lives (every second element)
 cmd_index=$((radio * 2 + 1))
+
+# Show which station is being played
 echo "Tuning in to: ${stations[$((radio * 2))]}"
+
+# Execute the associated player command using eval
+# (Use of eval allows the command string to include redirection or backgrounding)
 eval "${stations[$cmd_index]}"
+
